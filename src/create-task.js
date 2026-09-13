@@ -25,21 +25,8 @@ function prioritySelect() {
 
 // date funtions for variables and formatting
 function dateDisplay() {
-  const taskDate = document.getElementById("item-due-date").value;
-
-  if (!taskDate) {
-    return "";
-  }
-
-  const formattedDate = new Date(taskDate);
-
-  const dueDate = formattedDate.toLocaleDateString("en-US", {
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-  return dueDate;
+  const taskDate = document.getElementById("item-due-date");
+  return taskDate.value;
 }
 
 // create task item
@@ -61,6 +48,17 @@ export function generateTaskItem() {
 // render the items in the array to the interface
 export function renderTask() {
   taskUl.innerHTML = "";
+
+  function formattedDateForDispay(rawDate) {
+    const dateObject = new Date(rawDate);
+    const formatted = dateObject.toLocaleDateString("en-US", {
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+    return formatted;
+  }
 
   tasks.forEach((item) => {
     const itemContainer = document.createElement("li");
@@ -85,8 +83,8 @@ export function renderTask() {
     </section>
       
     <section>
-      <!-- date, priority etc... --><div
-       <div class="date-set">${item.date ? `<div>${item.date}</div>` : ""}</div>
+      <!-- date, priority etc... -->
+       <div class="date-set">${item.date ? `<div>${formattedDateForDispay(item.date)}</div>` : ""}</div>
        <div class="priority-set">${item.priority ? `<div>${item.priority}</div>` : ""}</div>
     </section>      
     `;
