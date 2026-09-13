@@ -6,6 +6,7 @@ export function saveTasks() {
 
 // this uses the asynchronous JS but yet to understand it
 // remember to recomment this
+// this is for rendering
 export function getSavedTasks() {
   const storedTasks = localStorage.getItem("myTasks");
 
