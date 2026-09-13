@@ -8,6 +8,7 @@ module.exports = (env, argv) => {
     entry: "./src/index.js",
     output: {
       path: path.resolve(__dirname, "dist"),
+      publicPath: "/ordin-project-todo-app/",
       filename: isProduction ? "[name].[contenthash].js" : "[name].js",
       clean: true,
     },
