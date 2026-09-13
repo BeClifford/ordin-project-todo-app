@@ -28,7 +28,8 @@ addTaskBtn.addEventListener("click", () => {
   openDialog();
 });
 
-// add click event on submit button in dialog
+// add click event on submit button in dialog.
+// it add the new inputted task to the array
 export function submitTask() {
   const submitBtn = document.querySelector(".add-task");
 
@@ -36,15 +37,19 @@ export function submitTask() {
     if (currentlyEditingId) {
       const itemToUpdate = tasks.find((item) => item.id === currentlyEditingId);
       const updatedTaskItem = document.getElementById("title").value;
-      item.title = updatedTaskItem;
+      itemToUpdate.title = updatedTaskItem;
+      itemToUpdate.date = document.getElementById("item-due-date").value; //this updates the date to the new set date
+      itemToUpdate.priority = document.getElementById("priority-select").value; //this updates the priority to the new set priority
       saveTasks();
       displayTask(e);
       clearEditingId();
-      // clear dates and priority
+      document.getElementById("item-due-date").value = "";
+      document.getElementById("priority-select").value = "";
     } else {
-      generateTaskItem();
-      displayTask(e);
       // clear dates and priority
+      generateTaskItem();
+      saveTasks();
+      displayTask(e);
     }
   });
 
